@@ -1,0 +1,14 @@
+.formError {
+  background: var(--color-error-soft);
+  color: var(--color-error);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 13px;
+}
+
+.fieldError {
+  color: var(--color-error);
+  font-size: 12px;
+  margin-top: var(--spacing-1);
+}

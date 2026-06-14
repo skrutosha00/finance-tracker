@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OperationType {
+  expense
+  saving
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  categories   Category[]
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+model Category {
+  id        String        @id @default(cuid())
+  userId    String        @map("user_id")
+  name      String
+  type      OperationType
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@unique([userId, type, name])
+  @@index([userId, type])
+  @@map("categories")
+}
+
+model Transaction {
+  id         String        @id @default(cuid())
+  userId     String        @map("user_id")
+  categoryId String        @map("category_id")
+  type       OperationType
+  amount     Decimal       @db.Decimal(12, 2)
+  date       DateTime      @db.Date
+  comment    String?       @db.VarChar(500)
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@index([userId, date])
+  @@index([userId, categoryId])
+  @@index([userId, type, date])
+  @@map("transactions")
+}

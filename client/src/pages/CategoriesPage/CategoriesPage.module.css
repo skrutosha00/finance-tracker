@@ -1,0 +1,132 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-5);
+  margin-top: var(--spacing-4);
+}
+
+.column {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.column h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.newForm {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.newForm input {
+  flex-grow: 1;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.newForm input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.newForm button {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0 var(--spacing-4);
+  font-weight: 500;
+}
+
+.newForm button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  transition: border-color var(--transition-fast);
+}
+
+.row:hover {
+  border-color: var(--color-border-strong);
+}
+
+.name {
+  flex-grow: 1;
+  font-weight: 500;
+}
+
+.editInput {
+  flex-grow: 1;
+  padding: var(--spacing-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.editInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.row button {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-1) var(--spacing-3);
+  color: var(--color-text-soft);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.row button:hover:not(:disabled) {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+.delete {
+  color: var(--color-accent-expense) !important;
+}
+
+.delete:hover {
+  color: var(--color-accent-expense-deep) !important;
+  background: var(--color-accent-expense-soft) !important;
+}
+
+.error {
+  flex-basis: 100%;
+  font-size: 12px;
+  color: var(--color-error);
+  margin-top: var(--spacing-1);
+}

@@ -1,0 +1,20 @@
+[Unit]
+Description=Personal Finance Backend
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/finance/server
+EnvironmentFile=/etc/finance/backend.env
+ExecStart=/usr/bin/node dist/index.js
+Restart=always
+RestartSec=5
+User=app
+Group=app
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=finance-backend
+
+[Install]
+WantedBy=multi-user.target
